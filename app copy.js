@@ -36,41 +36,52 @@ const generarOpcionesMonedas = () => {
 };
 
 const obtenerTasasCambio = async (monedaOrigen, monedasDestino) => {
-  const symbols = monedasDestino.join(',');
+  // Construimos la lista de monedas a solicitar, evitando solicitar USDUSD
+  const currencies = monedasDestino.filter(moneda => moneda !== 'USD');
 
-  const url = `https://api.apilayer.com/currency_data/live?source=${monedaOrigen}&currencies=${symbols}`;
+  if (monedaOrigen !== 'USD') {
+    currencies.push(monedaOrigen);
+  }
 
-  const requestOptions = {
-    method: 'GET',
-    redirect: 'follow',
-    headers: {
-      'apikey': accessKey
+  // Eliminamos duplicados y unimos en una cadena
+  const uniqueCurrencies = [...new Set(currencies)].join(',');
+
+  const url = `http://apilayer.net/api/live?access_key=${accessKey}&currencies=${uniqueCurrencies}&source=USD&format=1`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  console.log('URL de solicitud:', url); // Para depuración
+  console.log('Respuesta de la API:', data); // Para depuración
+
+  if (data.success) {
+    const tasas = {};
+
+    // Si la moneda de origen es USD, la tasa es 1
+    const tasaUSDAmonedaOrigen = monedaOrigen === 'USD' ? 1 : data.quotes[`USD${monedaOrigen}`];
+    if (tasaUSDAmonedaOrigen === undefined) {
+      throw new Error(`No se pudo obtener la tasa de cambio para ${monedaOrigen}.`);
     }
-  };
 
-  try {
-    const response = await fetch(url, requestOptions);
-    const data = await response.json();
+    monedasDestino.forEach(monedaDestino => {
+      const tasaUSDAmonedaDestino = monedaDestino === 'USD' ? 1 : data.quotes[`USD${monedaDestino}`];
+      if (tasaUSDAmonedaDestino === undefined) {
+        throw new Error(`No se pudo obtener la tasa de cambio para ${monedaDestino}.`);
+      }
 
-    console.log('URL de solicitud:', url); // Para depuración
-    console.log('Respuesta de la API:', data); // Para depuración
+      let tasaCambio;
+      if (monedaOrigen === 'USD') {
+        tasaCambio = tasaUSDAmonedaDestino;
+      } else {
+        tasaCambio = tasaUSDAmonedaDestino / tasaUSDAmonedaOrigen;
+      }
 
-    if (data.success) {
-      const tasas = {};
+      tasas[monedaDestino] = tasaCambio;
+    });
 
-      Object.keys(data.quotes).forEach(key => {
-        const monedaDestino = key.substring(monedaOrigen.length); // Extraer el código de la moneda de destino
-        const tasaCambio = data.quotes[key];
-        tasas[monedaDestino] = tasaCambio;
-      });
-
-      return tasas;
-    } else {
-      throw new Error(`Error de API: ${data.error.info}`);
-    }
-  } catch (error) {
-    console.error('Error en obtenerTasasCambio:', error);
-    throw new Error('Error al obtener las tasas de cambio.');
+    return tasas;
+  } else {
+    throw new Error(`Error de API: ${data.error.info}`);
   }
 };
 
@@ -96,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resultadoDiv.innerHTML = `
       <div class="text-center">
         <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Cargando...</span>
+          <span class="visualmente-hidden">Cargando...</span>
         </div>
       </div>
     `;
