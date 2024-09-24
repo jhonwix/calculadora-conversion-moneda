@@ -1,0 +1,130 @@
+/* styles.css */
+
+/* Paleta de colores */
+:root {
+  --color-primario: #0d6efd; /* Azul de Bootstrap */
+  --color-secundario: #000000; /* Negro */
+  --color-fondo: #1a1a1a; /* Negro ligeramente aclarado */
+  --color-texto: #ffffff; /* Blanco */
+}
+
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* Estilos para centrar y destacar el título */
+.titulo-principal {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color-primario);
+}
+
+/* Estilos de la navbar */
+.navbar {
+  background-color: var(--color-secundario);
+}
+
+/* Estilos del pie de página */
+.footer {
+  background-color: var(--color-secundario);
+}
+
+.footer .text-muted {
+  color: #b3b3b3 !important;
+}
+
+/* Estilos para el formulario */
+#formulario {
+  background-color: #2c2c2c;
+  border: none;
+}
+
+.form-label {
+  color: var(--color-texto);
+}
+
+.form-control, .form-select {
+  background-color: #2c2c2c;
+  border: 1px solid #6c757d;
+  color: var(--color-texto);
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #2c2c2c;
+  border-color: var(--color-primario);
+  color: var(--color-texto);
+}
+
+/* Estilos para las tarjetas de conversión */
+.card {
+  background-color: #2c2c2c;
+  border: none;
+}
+
+.card-title img {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.card-text.display-6 {
+  font-size: 2rem;
+}
+
+/* Estilos para las alertas */
+.alert-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+/* Estilos para el spinner de carga */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Estilos para el indicador de cambio */
+.indicador {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: bold;
+  min-width: 40px;
+  margin-top: 8px;
+}
+
+.indicador.up {
+  background-color: #d4edda; /* Verde claro */
+  color: #155724; /* Verde oscuro */
+}
+
+.indicador.down {
+  background-color: #f8d7da; /* Rojo claro */
+  color: #721c24; /* Rojo oscuro */
+}
+
+.indicador.no-change {
+  background-color: #e2e3e5; /* Gris claro */
+  color: #6c757d; /* Gris oscuro */
+}
+
+.indicador.no-data {
+  background-color: #e2e3e5; /* Gris claro */
+  color: #6c757d; /* Gris oscuro */
+}
+
+.indicador .flecha {
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.indicador .porcentaje {
+  vertical-align: middle;
+  font-size: 1rem;
+}
+
+/* Asegurar que el SVG toma el color actual */
+.indicador svg {
+  fill: currentColor;
+}
