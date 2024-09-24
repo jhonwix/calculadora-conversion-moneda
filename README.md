@@ -29,7 +29,7 @@ Instalación
 
     bash
 
-git clone https://github.com/tuusuario/calculadora-conversion-moneda.git
+git clone https://github.com/jhonwix/calculadora-conversion-moneda.git
 
 Navegar al directorio del proyecto:
 
