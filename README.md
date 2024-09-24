@@ -103,3 +103,108 @@ Agradecimientos
     Jhon Orrego por el desarrollo de la aplicación.
     OpenAI ChatGPT por la asistencia en el diseño y desarrollo.
     CurrencyLayer por proporcionar la API de tasas de cambio.
+
+    Currency Conversion Calculator
+Table of Contents
+
+    Description
+    Features
+    Installation
+    Usage
+    Technologies Used
+    Contributing
+    License
+    Acknowledgments
+
+Description
+
+The Currency Conversion Calculator is a web application that allows users to convert amounts between different currencies in real-time. The app offers an intuitive and attractive interface, displaying country flags and names to facilitate currency selection. It also provides information on how exchange rates have varied since the last query, showing visual indicators and percentage changes.
+Features
+
+    Real-time conversion between multiple currencies.
+    Intuitive interface with responsive design using Bootstrap 5.
+    Change indicators showing if the rate has increased or decreased, with arrows and percentages.
+    Local storage of exchange rates to compare with subsequent queries.
+    Multilingual support (English and Spanish).
+    Display of flags and country names for a better user experience.
+
+Installation
+
+    Clone the repository:
+
+    bash
+
+git clone https://github.com/jhonwix/calculadora-conversion-moneda.git
+
+Navigate to the project directory:
+
+bash
+
+cd currency-conversion-calculator
+
+Obtain an API key:
+
+    Sign up at CurrencyLayer to get a free API key.
+
+Configure the API key:
+
+    Create a file named config.js in the project directory with the following content:
+
+    javascript
+
+    const CONFIG = {
+      accessKey: 'YOUR_API_KEY'
+    };
+
+    Replace 'YOUR_API_KEY' with the key obtained in the previous step.
+
+Run the application:
+
+    Use a local web server to run the application. You can use the Live Server extension in Visual Studio Code or run a simple server with Python:
+
+    bash
+
+        python -m http.server 8000
+
+        Open your browser and navigate to http://localhost:8000.
+
+Usage
+
+    Select the source currency:
+        Use the dropdown menu to choose the currency from which you want to convert.
+
+    Enter the amount:
+        Input the amount you wish to convert.
+
+    Perform the conversion:
+        Click the "Convert" button.
+
+    View the results:
+        The application will display the equivalent amounts in the destination currencies, along with indicators showing how the exchange rate has changed since the last query.
+
+Technologies Used
+
+    HTML5 and CSS3
+    JavaScript (ES6+)
+    Bootstrap 5
+    CurrencyLayer API
+    LocalStorage for local storage
+
+Contributing
+
+Contributions are welcome! If you'd like to collaborate:
+
+    Fork the project.
+    Create a new branch for your feature (git checkout -b feature/new-feature).
+    Make your changes and commit them (git commit -am 'Add new feature').
+    Push your changes to the remote repository (git push origin feature/new-feature).
+    Open a Pull Request.
+
+License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+Acknowledgments
+
+    Jhon Orrego for developing the application.
+    OpenAI ChatGPT for assistance in design and development.
+    CurrencyLayer for providing the exchange rates API.
